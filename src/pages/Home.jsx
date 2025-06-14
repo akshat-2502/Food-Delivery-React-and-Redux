@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import Nav from "../components/Nav";
 import categories from "../Category";
 import Card from "../components/Card";
 import { food_items } from "../food";
 
 const Home = () => {
+  const [filterCatagory, setFilterCatagory] = useState(food_items);
+
+  const filter = (catagory) => {
+    if (catagory.toLowerCase() === "all") {
+      setFilterCatagory(food_items);
+    } else {
+      let newList = food_items.filter(
+        (item) => item.food_category.toLowerCase() === catagory.toLowerCase()
+      );
+      setFilterCatagory(newList);
+    }
+  };
+
   return (
     <div className="w-full min-h-screen bg-slate-200">
       <Nav />
@@ -13,6 +26,7 @@ const Home = () => {
           <div
             key={item.id}
             className="w-[140px] h-[150px] text-[20px] text-gray-700 bg-white flex flex-col items-center gap-5 justify-center shadow-xl rounded-lg hover:bg-green-200 cursor-pointer transition-all duration-300"
+            onClick={() => filter(item.name)}
           >
             {item.image}
             {item.name}
@@ -20,7 +34,7 @@ const Home = () => {
         ))}
       </div>
       <div className="w-full flex flex-wrap gap-5 p-8 justify-center items-center">
-        {food_items.map((item) => (
+        {filterCatagory.map((item) => (
           <Card
             name={item.food_name}
             price={item.price}
