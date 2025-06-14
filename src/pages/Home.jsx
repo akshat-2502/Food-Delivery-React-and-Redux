@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "../components/Nav";
 import categories from "../Category";
 import Card from "../components/Card";
@@ -6,8 +6,10 @@ import { food_items } from "../food";
 
 const Home = () => {
   const [filterCatagory, setFilterCatagory] = useState(food_items);
+  const [activeCatagory, setActiveCatagory] = useState("all");
 
   const filter = (catagory) => {
+    setActiveCatagory(catagory.toLowerCase());
     if (catagory.toLowerCase() === "all") {
       setFilterCatagory(food_items);
     } else {
@@ -25,7 +27,11 @@ const Home = () => {
         {categories.map((item) => (
           <div
             key={item.id}
-            className="w-[140px] h-[150px] text-[20px] text-gray-700 bg-white flex flex-col items-center gap-5 justify-center shadow-xl rounded-lg hover:bg-green-200 cursor-pointer transition-all duration-300"
+            className={` ${
+              activeCatagory === item.name.toLowerCase()
+                ? "bg-green-200"
+                : "bg-white"
+            } w-[140px] h-[150px] text-[20px] text-gray-700 flex flex-col items-center gap-5 justify-center shadow-xl rounded-lg hover:bg-green-200 cursor-pointer transition-all duration-300`}
             onClick={() => filter(item.name)}
           >
             {item.image}
