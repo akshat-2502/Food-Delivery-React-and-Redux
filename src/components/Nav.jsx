@@ -6,7 +6,8 @@ import { dataContext } from "../context/UserContext";
 import { food_items } from "../food";
 
 const Nav = () => {
-  let { input, setInput, setFilterCatagory } = useContext(dataContext);
+  let { input, setInput, setFilterCatagory, setShowCart } =
+    useContext(dataContext);
 
   useEffect(() => {
     let newList = food_items.filter(
@@ -34,7 +35,10 @@ const Nav = () => {
           onChange={(e) => setInput(e.target.value)}
         />
       </form>
-      <div className="w-[60px] h-[60px] bg-white flex justify-center items-center shadow-xl rounded-md relative">
+      <div
+        onClick={() => setShowCart(true)}
+        className="w-[60px] h-[60px] bg-white flex justify-center items-center shadow-xl rounded-md relative hover:bg-green-100 cursor-pointer transition-all duration-500 hover:scale-110"
+      >
         <span className="absolute top-0 right-2 text-green-500 font-bold text-[18px]">
           0
         </span>

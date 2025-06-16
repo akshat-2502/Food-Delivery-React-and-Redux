@@ -1,12 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Nav from "../components/Nav";
 import categories from "../Category";
 import Card from "../components/Card";
 import { food_items } from "../food";
 import { dataContext } from "../context/UserContext";
+import { IoMdClose } from "react-icons/io";
 
 const Home = () => {
-  let { filterCatagory, setFilterCatagory, input } = useContext(dataContext);
+  let { filterCatagory, setFilterCatagory, input, showCart, setShowCart } =
+    useContext(dataContext);
   const [activeCatagory, setActiveCatagory] = useState("all");
 
   const filter = (catagory) => {
@@ -53,6 +55,22 @@ const Home = () => {
           />
         ))}
       </div>
+
+      {/* CART */}
+
+      {showCart ? (
+        <div className="w-[40vw] h-[100vh] fixed top-0 right-0 bg-white border-2 border-green-600 rounded-lg p-6">
+          <header className="flex justify-between items-center">
+            <span className="text-green-500 text-[20px] font-serif font-semibold">
+              Selected Items
+            </span>
+            <IoMdClose
+              onClick={() => setShowCart(false)}
+              className="w-[35px] h-[35px] text-green-500 font-semibold hover:text-green-800 cursor-pointer"
+            />
+          </header>
+        </div>
+      ) : null}
     </div>
   );
 };
