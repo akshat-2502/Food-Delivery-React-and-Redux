@@ -58,19 +58,21 @@ const Home = () => {
 
       {/* CART */}
 
-      {showCart ? (
-        <div className="w-[40vw] h-[100vh] fixed top-0 right-0 bg-white border-2 border-green-600 rounded-lg p-6">
-          <header className="flex justify-between items-center">
-            <span className="text-green-500 text-[20px] font-serif font-semibold">
-              Selected Items
-            </span>
-            <IoMdClose
-              onClick={() => setShowCart(false)}
-              className="w-[35px] h-[35px] text-green-500 font-semibold hover:text-green-800 cursor-pointer"
-            />
-          </header>
-        </div>
-      ) : null}
+      <div
+        className={`w-[40vw] h-[100vh] fixed top-0 right-0 bg-white border-2 border-green-600 rounded-lg p-6 transition-all duration-700 ${
+          showCart ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <header className="flex justify-between items-center">
+          <span className="text-green-500 text-[20px] font-serif font-semibold">
+            Selected Items
+          </span>
+          <IoMdClose
+            onClick={() => setShowCart(false)}
+            className="w-[35px] h-[35px] text-green-500 font-semibold hover:text-green-800 cursor-pointer"
+          />
+        </header>
+      </div>
     </div>
   );
 };
