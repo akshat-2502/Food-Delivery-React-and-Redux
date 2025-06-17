@@ -5,6 +5,7 @@ import Card from "../components/Card";
 import { food_items } from "../food";
 import { dataContext } from "../context/UserContext";
 import { IoMdClose } from "react-icons/io";
+import Card2 from "../components/Card2";
 
 const Home = () => {
   let { filterCatagory, setFilterCatagory, input, showCart, setShowCart } =
@@ -72,6 +73,7 @@ const Home = () => {
             className="w-[35px] h-[35px] text-green-500 font-semibold hover:text-green-800 cursor-pointer"
           />
         </header>
+        <Card2 />
       </div>
     </div>
   );
