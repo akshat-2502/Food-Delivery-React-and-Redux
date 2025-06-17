@@ -7,6 +7,7 @@ import { dataContext } from "../context/UserContext";
 import { IoMdClose } from "react-icons/io";
 import Card2 from "../components/Card2";
 import { useSelector } from "react-redux";
+import { TbMoodSad } from "react-icons/tb";
 
 const Home = () => {
   let { filterCatagory, setFilterCatagory, input, showCart, setShowCart } =
@@ -56,18 +57,30 @@ const Home = () => {
           ))}
         </div>
       ) : null}
-
-      <div className="w-full flex flex-wrap gap-5 p-8 justify-center items-center">
-        {filterCatagory.map((item) => (
-          <Card
-            name={item.food_name}
-            price={item.price}
-            image={item.food_image}
-            type={item.food_type}
-            id={item.id}
-          />
-        ))}
-      </div>
+      {filterCatagory.length > 0 ? (
+        <>
+          <div className="w-full flex flex-wrap gap-5 p-8 justify-center items-center">
+            {filterCatagory.map((item) => (
+              <Card
+                name={item.food_name}
+                price={item.price}
+                image={item.food_image}
+                type={item.food_type}
+                id={item.id}
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="flex justify-center gap-1 items-center mt-40 text-green-500">
+            <span className="text-2xl font-semibold font-serif">
+              No Dish Found...
+            </span>
+            <TbMoodSad className="w-[40px] h-[40px]" />
+          </div>
+        </>
+      )}
 
       {/* CART */}
 
@@ -85,48 +98,65 @@ const Home = () => {
             className="w-[35px] h-[35px] text-green-500 font-semibold hover:text-green-800 cursor-pointer"
           />
         </header>
-        <div>
-          {items.map((item) => (
-            <Card2 key={item.id} foodItem={item} />
-          ))}
-        </div>
-        <div className="w-full border-t-2 border-b-2 border-gray-400 mt-8 p-6 flex flex-col justify-center">
-          <div className="flex justify-between items-center">
-            <span className="text-lg font-semibold text-gray-700 font-serif">
-              Subtotal
-            </span>
-            <span className="text-green-500 font-semibold">
-              Rs {subtotal} /-
-            </span>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="text-lg font-semibold text-gray-700 font-serif">
-              Delivery
-            </span>
-            <span className="text-green-500 font-semibold">
-              Rs {delivery} /-
-            </span>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="text-lg font-semibold text-gray-700 font-serif">
-              Taxes
-            </span>
-            <span className="text-green-500 font-semibold">Rs {taxes} /-</span>
-          </div>
-        </div>
-        <div className="flex justify-between items-center">
-          <span className="text-xl mt-4 font-semibold text-gray-700 font-serif">
-            Total
-          </span>
-          <span className="text-green-500 text-xl font-semibold">
-            Rs {total} /-
-          </span>
-        </div>
-        <div className="flex justify-center items-center">
-          <button className="w-[80%] bg-green-500 hover:bg-green-600 transition-all cursor-pointer duration-400 mt-4 text-white font-semibold rounded-lg py-2">
-            Place Order
-          </button>
-        </div>
+        {items.length > 0 ? (
+          <>
+            <div>
+              {items.map((item) => (
+                <Card2 key={item.id} foodItem={item} />
+              ))}
+            </div>
+            <div className="w-full border-t-2 border-b-2 border-gray-400 mt-8 p-6 flex flex-col justify-center">
+              <div className="flex justify-between items-center">
+                <span className="text-lg font-semibold text-gray-700 font-serif">
+                  Subtotal
+                </span>
+                <span className="text-green-500 font-semibold">
+                  Rs {subtotal} /-
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-lg font-semibold text-gray-700 font-serif">
+                  Delivery
+                </span>
+                <span className="text-green-500 font-semibold">
+                  Rs {delivery} /-
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-lg font-semibold text-gray-700 font-serif">
+                  Taxes
+                </span>
+                <span className="text-green-500 font-semibold">
+                  Rs {taxes} /-
+                </span>
+              </div>
+            </div>
+            <div
+              className="flex justify-between items-center pt-3 pb-3 border-b-2
+          border-gray-400"
+            >
+              <span className="text-xl font-semibold text-gray-700 font-serif">
+                Total
+              </span>
+              <span className="text-green-500 text-xl font-semibold">
+                Rs {total} /-
+              </span>
+            </div>
+            <div className="flex justify-center items-center">
+              <button className="w-[80%] bg-green-500 hover:bg-green-600 transition-all cursor-pointer duration-400 mt-4 text-white font-semibold rounded-lg py-2">
+                Place Order
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="flex justify-center items-center pt-30">
+              <span className="text-green-500 font-semibold text-2xl font-serif">
+                No Items In The Cart...
+              </span>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

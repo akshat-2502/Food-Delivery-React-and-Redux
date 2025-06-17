@@ -1,7 +1,7 @@
 import React from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
-import { RemoveItem } from "../redux/cartSlice";
+import { DecrementQty, IncrementQty, RemoveItem } from "../redux/cartSlice";
 
 const Card2 = ({ foodItem }) => {
   let dispatch = useDispatch();
@@ -18,11 +18,19 @@ const Card2 = ({ foodItem }) => {
         <div className="w-[40%] h-full flex flex-col items-center gap-3">
           <div className="md:font-semibold text-[15px]">{foodItem.name}</div>
           <div className="w-[75%] h-[33px] flex justify-between items-center rounded-md overflow-hidden bg-white border-1 border-green-500">
-            <button className="bg-slate-200 w-[30%] h-full hover:bg-green-400 transition-all duration-400 cursor-pointer">
+            <button
+              onClick={() =>
+                foodItem.qty > 1 ? dispatch(DecrementQty(foodItem.id)) : null
+              }
+              className="bg-slate-200 w-[30%] h-full hover:bg-green-400 transition-all duration-400 cursor-pointer"
+            >
               -
             </button>
             <span className="text-green-500 font-bold">{foodItem.qty}</span>
-            <button className="bg-slate-200 w-[30%] h-full  hover:bg-green-400 transition-all duration-400 cursor-pointer">
+            <button
+              onClick={() => dispatch(IncrementQty(foodItem.id))}
+              className="bg-slate-200 w-[30%] h-full  hover:bg-green-400 transition-all duration-400 cursor-pointer"
+            >
               +
             </button>
           </div>
