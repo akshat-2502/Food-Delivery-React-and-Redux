@@ -15,7 +15,7 @@ const Card2 = () => {
         </div>
         <div className="w-[40%] h-full flex flex-col items-center gap-5">
           <div className="font-semibold text-[18px]">Pancake</div>
-          <div className="w-[60%] h-[33px] flex justify-between items-center rounded-md overflow-hidden bg-white border-1 border-green-500">
+          <div className="w-[75%] h-[33px] flex justify-between items-center rounded-md overflow-hidden bg-white border-1 border-green-500">
             <button className="bg-slate-200 w-[30%] h-full hover:bg-green-400 transition-all duration-400 cursor-pointer">
               -
             </button>
