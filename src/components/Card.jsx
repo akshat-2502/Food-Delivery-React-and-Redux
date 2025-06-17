@@ -9,7 +9,7 @@ const Card = ({ name, price, type, image }) => {
         <img
           src={image}
           alt="food_item"
-          className="w-full h-full object-cover"
+          className="w-full h-full sobject-cover"
         />
       </div>
       <div className="text-xl font-semibold">{name}</div>
