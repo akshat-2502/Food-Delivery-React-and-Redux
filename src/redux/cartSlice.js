@@ -27,9 +27,12 @@ const cartSlice = createSlice({
         item.id === action.payload ? { ...item, qty: item.qty - 1 } : item
       );
     },
+    EmptyCart: () => {
+      return [];
+    },
   },
 });
 
-export const { AddItem, RemoveItem, IncrementQty, DecrementQty } =
+export const { AddItem, RemoveItem, IncrementQty, DecrementQty, EmptyCart } =
   cartSlice.actions;
 export default cartSlice.reducer;

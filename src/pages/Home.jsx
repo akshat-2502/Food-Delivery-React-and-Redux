@@ -6,8 +6,10 @@ import { food_items } from "../food";
 import { dataContext } from "../context/UserContext";
 import { IoMdClose } from "react-icons/io";
 import Card2 from "../components/Card2";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { TbMoodSad } from "react-icons/tb";
+import { toast } from "react-toastify";
+import { EmptyCart } from "../redux/cartSlice";
 
 const Home = () => {
   let { filterCatagory, setFilterCatagory, input, showCart, setShowCart } =
@@ -27,6 +29,7 @@ const Home = () => {
   };
 
   let items = useSelector((state) => state.cart);
+  let dispatch = useDispatch();
 
   let subtotal = items.reduce(
     (total, item) => total + item.qty * item.price,
@@ -143,7 +146,13 @@ const Home = () => {
               </span>
             </div>
             <div className="flex justify-center items-center">
-              <button className="w-[80%] bg-green-500 hover:bg-green-600 transition-all cursor-pointer duration-400 mt-4 text-white font-semibold rounded-lg py-2">
+              <button
+                onClick={() => {
+                  toast.success("ORDER PLACED");
+                  dispatch(EmptyCart());
+                }}
+                className="w-[80%] bg-green-500 hover:bg-green-600 transition-all cursor-pointer duration-400 mt-4 text-white font-semibold rounded-lg py-2"
+              >
                 Place Order
               </button>
             </div>
