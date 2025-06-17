@@ -60,7 +60,7 @@ const Home = () => {
       {/* CART */}
 
       <div
-        className={`w-[40vw] h-[100vh] fixed top-0 right-0 bg-white border-2 border-green-600 rounded-lg p-6 transition-all duration-700 ${
+        className={`w-[40vw] h-[100vh] fixed top-0 right-0 bg-white border-2 border-green-600 rounded-lg py-6 px-3 transition-all duration-700 ${
           showCart ? "translate-x-0" : "translate-x-full"
         }`}
       >
