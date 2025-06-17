@@ -6,6 +6,7 @@ import { food_items } from "../food";
 import { dataContext } from "../context/UserContext";
 import { IoMdClose } from "react-icons/io";
 import Card2 from "../components/Card2";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   let { filterCatagory, setFilterCatagory, input, showCart, setShowCart } =
@@ -23,6 +24,13 @@ const Home = () => {
       setFilterCatagory(newList);
     }
   };
+
+  let items = useSelector((state) => state.cart);
+
+  let subtotal = items.reduce((total, item) => total + item.price, 0);
+  let delivery = 40;
+  let taxes = Math.floor(subtotal * (5 / 100));
+  let total = subtotal + taxes + delivery;
 
   return (
     <div className="w-full min-h-screen bg-slate-200">
@@ -61,7 +69,7 @@ const Home = () => {
       {/* CART */}
 
       <div
-        className={`w-full md:w-[40vw] h-[100vh] fixed top-0 right-0 bg-white border-2 border-green-600 rounded-lg py-6 px-3 transition-all duration-700 ${
+        className={`w-full md:w-[40vw] h-[100vh] fixed top-0 right-0 overflow-y-scroll bg-white border-2 border-green-600 rounded-lg py-6 px-3 transition-all duration-700 ${
           showCart ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -74,9 +82,48 @@ const Home = () => {
             className="w-[35px] h-[35px] text-green-500 font-semibold hover:text-green-800 cursor-pointer"
           />
         </header>
-        <Card2 />
-        <Card2 />
-        <Card2 />
+        <div>
+          {items.map((item) => (
+            <Card2 key={item.id} foodItem={item} />
+          ))}
+        </div>
+        <div className="w-full border-t-2 border-b-2 border-gray-400 mt-8 p-6 flex flex-col justify-center">
+          <div className="flex justify-between items-center">
+            <span className="text-lg font-semibold text-gray-700 font-serif">
+              Subtotal
+            </span>
+            <span className="text-green-500 font-semibold">
+              Rs {subtotal} /-
+            </span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-lg font-semibold text-gray-700 font-serif">
+              Delivery
+            </span>
+            <span className="text-green-500 font-semibold">
+              Rs {delivery} /-
+            </span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-lg font-semibold text-gray-700 font-serif">
+              Taxes
+            </span>
+            <span className="text-green-500 font-semibold">Rs {taxes} /-</span>
+          </div>
+        </div>
+        <div className="flex justify-between items-center">
+          <span className="text-xl mt-4 font-semibold text-gray-700 font-serif">
+            Total
+          </span>
+          <span className="text-green-500 text-xl font-semibold">
+            Rs {total} /-
+          </span>
+        </div>
+        <div className="flex justify-center items-center">
+          <button className="w-[80%] bg-green-500 hover:bg-green-600 transition-all cursor-pointer duration-400 mt-4 text-white font-semibold rounded-lg py-2">
+            Place Order
+          </button>
+        </div>
       </div>
     </div>
   );

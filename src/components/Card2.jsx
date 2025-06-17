@@ -1,20 +1,22 @@
 import React from "react";
-import image1 from "../assets/image1.avif";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { useDispatch } from "react-redux";
+import { RemoveItem } from "../redux/cartSlice";
 
-const Card2 = () => {
+const Card2 = ({ foodItem }) => {
+  let dispatch = useDispatch();
   return (
-    <div className="w-full h-[110px] border-2 border-green-500 rounded-lg shadow-md bg-zinc-100 flex mb-2">
-      <div className="w-[60%] h-full  p-2 flex">
-        <div className="w-[60%] h-full overflow-hidden rounded-lg">
+    <div className="w-full h-[120px] border-2 border-green-500 rounded-lg shadow-md bg-zinc-100 flex mb-2">
+      <div className="w-[80%] h-full  p-2 flex gap-2">
+        <div className="w-[40%] h-full overflow-hidden rounded-lg">
           <img
             className="object-cover w-full h-full"
-            src={image1}
+            src={foodItem.image}
             alt="food_item"
           />
         </div>
-        <div className="w-[40%] h-full flex flex-col items-center gap-5">
-          <div className="font-semibold text-[18px]">Pancake</div>
+        <div className="w-[40%] h-full flex flex-col items-center gap-3">
+          <div className="md:font-semibold text-[15px]">{foodItem.name}</div>
           <div className="w-[75%] h-[33px] flex justify-between items-center rounded-md overflow-hidden bg-white border-1 border-green-500">
             <button className="bg-slate-200 w-[30%] h-full hover:bg-green-400 transition-all duration-400 cursor-pointer">
               -
@@ -26,9 +28,14 @@ const Card2 = () => {
           </div>
         </div>
       </div>
-      <div className="w-[40%] h-full  flex flex-col gap-6 items-end p-2">
-        <span className="text-green-500 font-semibold">Rs 499/-</span>
-        <RiDeleteBinLine className="w-[22px] h-[22px] text-red-500 cursor-pointer hover:scale-120 transition-all duration-300" />
+      <div className="w-[20%] h-full  flex flex-col gap-6 items-end p-2">
+        <span className="text-green-500 font-semibold">
+          Rs {foodItem.price}/-
+        </span>
+        <RiDeleteBinLine
+          onClick={() => dispatch(RemoveItem(foodItem.id))}
+          className="w-[22px] h-[22px] text-red-500 cursor-pointer hover:scale-120 transition-all duration-300"
+        />
       </div>
     </div>
   );
