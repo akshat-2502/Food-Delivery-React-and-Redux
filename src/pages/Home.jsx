@@ -64,7 +64,7 @@ const Home = () => {
           showCart ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <header className="flex justify-between items-center">
+        <header className="flex justify-between items-center mb-2">
           <span className="text-green-500 text-[20px] font-serif font-semibold">
             Selected Items
           </span>
@@ -73,6 +73,8 @@ const Home = () => {
             className="w-[35px] h-[35px] text-green-500 font-semibold hover:text-green-800 cursor-pointer"
           />
         </header>
+        <Card2 />
+        <Card2 />
         <Card2 />
       </div>
     </div>
