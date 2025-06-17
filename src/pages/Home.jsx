@@ -53,6 +53,7 @@ const Home = () => {
             price={item.price}
             image={item.food_image}
             type={item.food_type}
+            id={item.id}
           />
         ))}
       </div>
