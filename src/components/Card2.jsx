@@ -21,7 +21,7 @@ const Card2 = ({ foodItem }) => {
             <button className="bg-slate-200 w-[30%] h-full hover:bg-green-400 transition-all duration-400 cursor-pointer">
               -
             </button>
-            <span className="text-green-500 font-bold">1</span>
+            <span className="text-green-500 font-bold">{foodItem.qty}</span>
             <button className="bg-slate-200 w-[30%] h-full  hover:bg-green-400 transition-all duration-400 cursor-pointer">
               +
             </button>
