@@ -23,7 +23,7 @@ const Nav = () => {
 
   return (
     <div className="w-full h-[100px] flex justify-between items-center px-5 md:px-8">
-      <div className="w-[60px] h-[60px] bg-white flex justify-center items-center shadow-xl rounded-md">
+      <div className="w-[60px] h-[60px] bg-white flex justify-center items-center shadow-xl transition-all duration-500 hover:bg-green-100 cursor-pointer rounded-md hover:scale-110">
         <IoMenu className="w-[30px] h-[60px] text-green-500" />
       </div>
       <form
