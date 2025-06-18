@@ -7,6 +7,7 @@ const UserContext = ({ children }) => {
   const [filterCatagory, setFilterCatagory] = useState(food_items);
   const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   let data = {
     input,
     setInput,
@@ -16,6 +17,8 @@ const UserContext = ({ children }) => {
     setShowCart,
     setShowMenu,
     showMenu,
+    darkMode,
+    setDarkMode,
   };
   return (
     <div>

@@ -21,5 +21,3 @@ const SwitchButton = () => {
 };
 
 export default SwitchButton;
-
-// done
