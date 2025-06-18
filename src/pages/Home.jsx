@@ -12,8 +12,15 @@ import { toast } from "react-toastify";
 import { EmptyCart } from "../redux/cartSlice";
 
 const Home = () => {
-  let { filterCatagory, setFilterCatagory, input, showCart, setShowCart } =
-    useContext(dataContext);
+  let {
+    filterCatagory,
+    setFilterCatagory,
+    input,
+    showCart,
+    setShowCart,
+    setShowMenu,
+    showMenu,
+  } = useContext(dataContext);
   const [activeCatagory, setActiveCatagory] = useState("all");
 
   const filter = (catagory) => {
@@ -166,6 +173,25 @@ const Home = () => {
             </div>
           </>
         )}
+      </div>
+
+      {/* MENU */}
+
+      <div
+        className={`w-full md:w-[20vw] h-full bg-white fixed top-0 left-0 border-2 border-green-500 p-2 rounded-lg font-serif transition-all duration-500 ${
+          showMenu ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <header className="flex justify-between items-center p-4">
+          <div className=" font-bold text-green-500 text-2xl">Menu</div>
+          <div>
+            <IoMdClose
+              onClick={() => setShowMenu(false)}
+              className="w-[30px] h-[30px] cursor-pointer text-green-500 "
+            />
+          </div>
+        </header>
+        <div></div>
       </div>
     </div>
   );
