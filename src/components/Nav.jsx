@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { MdFastfood } from "react-icons/md";
+import { IoMenu } from "react-icons/io5";
 import { FaSearch } from "react-icons/fa";
 import { LuShoppingBag } from "react-icons/lu";
 import { dataContext } from "../context/UserContext";
@@ -7,7 +7,7 @@ import { food_items } from "../food";
 import { useSelector } from "react-redux";
 
 const Nav = () => {
-  let { input, setInput, setFilterCatagory, setShowCart } =
+  let { input, setInput, setFilterCatagory, setShowCart, setShowMenu } =
     useContext(dataContext);
 
   useEffect(() => {
@@ -23,8 +23,11 @@ const Nav = () => {
 
   return (
     <div className="w-full h-[100px] flex justify-between items-center px-5 md:px-8">
-      <div className="w-[60px] h-[60px] bg-white flex justify-center items-center shadow-xl rounded-md">
-        <MdFastfood className="w-[30px] h-[60px] text-green-500" />
+      <div className="w-[60px] h-[60px] bg-white flex justify-center items-center shadow-xl transition-all duration-500 hover:bg-green-100 cursor-pointer rounded-md hover:scale-110">
+        <IoMenu
+          onClick={() => setShowMenu(true)}
+          className="w-[30px] h-[60px] text-green-500"
+        />
       </div>
       <form
         className=" w-[45%] md:w-[70%] h-[60px] px-5 gap-5 flex  items-center bg-white shadow-md rounded-md"
